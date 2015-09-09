@@ -1,0 +1,49 @@
+Problem Statement
+
+Given two strings a and b of equal length, what's the longest string (S) that can be constructed such that it is a child of both? 
+
+A string x is said to be a child of a string y if x can be formed by deleting zero or more characters from y. 
+
+For example, ‘‘abcd" and ‘‘abdc" has two children with maximum length 3, ‘‘abc" and ‘‘abd". Note that we will not consider ‘‘abcd" as a common child because ′c′ doesn't occur before ′d′ in the second string.
+
+Input Format
+
+Two strings, a and b, with a newline separating them.
+
+Constraints
+
+All characters are in uppercase and lie between ASCII values 65-90. The maximum length of the strings is 5000.
+
+Output Format
+
+Length of string S.
+
+Sample Input
+
+HARRY
+SALLY
+Sample Output
+
+2
+Explanation
+
+The longest possible subset of characters that is possible by deleting zero or more characters from HARRY and SALLY is AY, whose length is 2.
+
+from __future__ import division
+from sys import stdin
+from collections import defaultdict
+
+def lcs(s1, s2):
+    prev = defaultdict(int)
+    for i in range(len(s1)):
+        cur = defaultdict(int)
+        for j in range(len(s2)):
+            cur[j] = ??? if s1[i] == s2[j] else max(cur[j - 1], prev[j])
+        prev = cur
+    return prev[len(s2)-1]
+                
+def main():
+    s, t = stdin.next().strip(), stdin.next().strip()
+    print lcs(s, t)
+
+main()
