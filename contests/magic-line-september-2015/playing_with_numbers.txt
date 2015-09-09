@@ -1,0 +1,66 @@
+Problem Statement
+
+You are given an array of size N . You need to answer Q queries. Each Query contains 1 number x. 
+For each query, you need to add x to each element of the array and then report the sum of absolute values in the array.
+
+Note : Changes to the array are permanent. See Sample for more clarification.
+
+Input Format
+
+First line contains N , number of elements in the array. 
+Next line contains N space separated integers of the array. 
+Next line contains Q(number of queries). 
+Next line contains Q space separated integers(the number x).
+
+Output Format
+
+For each query , output the sum in a newline.
+
+Constraints
+
+1 ≤ N ≤ 500000 
+1 ≤ Q ≤ 500000 
+-2000 ≤ number in each Query ≤ 2000 
+-2000 ≤ value of the array element ≤ 2000
+
+Sample Input
+
+3
+-1 2 -3
+3
+1 -2 3 
+Sample Output
+
+5
+7
+6
+Explanation
+
+After Query 1 : [ 0 , 3 , -2 ] => sum = 0 + 3 + 2 = 5 
+After Query 2 : [ -2 , 1 , -4 ] => sum = 2 + 1 + 4 = 7 
+After Query 3 : [ 1 , 4 , -1 ] => sum = 1 + 4 + 1 = 6
+
+NOTE : There is large input output in the problem .Be carefull with slow Input Output.
+
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+
+input()
+array = map(int, raw_input().split(" "))
+input()
+queries = map(int, raw_input().split(" "))
+buckets = [0] * 4001
+shift = 0
+for i in array:
+    buckets[i + shift + 2000] += 1 # buckets from -2000 to 2000
+for q in queries:
+    shift += q
+    if shift - q >= 2000 and shift >= 2000:
+        s += ???
+    elif shift - q <= -2000 and shift <= -2000:
+        s -= ???
+    else:
+        s = 0
+        for i, y in enumerate(buckets):
+            val = i + shift - 2000
+            s += y * abs(val)
+    print s
